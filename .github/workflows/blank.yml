@@ -38,7 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     
-    
+    steps:
+      - name: Run a one-line script
+        run: echo hello
 
       
       
