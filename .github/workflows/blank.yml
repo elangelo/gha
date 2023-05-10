@@ -18,7 +18,7 @@ jobs:
 
       # Runs some way to start the metis pipeline
       - name: Run a one-line script
-        run: ./install.sh --version ${{ github.actions.inputs.disqover_version }}
+        run: echo ${{ github.actions.inputs.disqover_version }}
         
   finish-metis-pipeliine:
     runs-on: ubuntu-latest
@@ -29,7 +29,7 @@ jobs:
     
     steps:
       - name: Check metis result
-        run: ./install.sh --switch
+        run: echo switch
 
       
       
