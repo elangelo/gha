@@ -2,6 +2,10 @@ name: CI
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      disqover_version:
+        type: string
+        description: Specify which version of disqover to install eg. 6.72.0
 
 jobs:
   start-metis-pipeline:
@@ -14,18 +18,18 @@ jobs:
 
       # Runs some way to start the metis pipeline
       - name: Run a one-line script
-        run: Start-MetisRun ...
+        run: ./install.sh --version ${{ github.actions.inputs.disqover_version }}
         
   finish-metis-pipeliine:
     runs-on: ubuntu-latest
     # this environment requires approval, if the metis pipeline sends a POST to 
     # https://api.github.com/repos/OWNER/REPO/actions/runs/RUN_ID/approve it will execute the steps below
-    environment: development
+    environment: switch #requires approval
     needs: [start-metis-pipeline]
     
     steps:
       - name: Check metis result
-        run: Verify-MetisRun
+        run: ./install.sh --switch
 
       
       
