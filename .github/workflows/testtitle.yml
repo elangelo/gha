@@ -1,0 +1,29 @@
+name: title ( ${{ inputs.api_test_cases || inputs.scenario_test_cases }})
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      api_test_cases:
+        type: string
+        description: ""
+      scenario_test_cases:
+        type: string
+        description: ""
+
+jobs:
+  start-metis-pipeline:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs some way to start the metis pipeline
+      - name: Run a one-line script
+        run: echo ${{ github.actions.inputs.api_test_cases }}
+        
+      
+      
+    
+      
